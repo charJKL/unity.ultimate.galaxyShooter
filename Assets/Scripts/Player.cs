@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
 	[SerializeField] private float speed = 3.5f;
 	[SerializeField] private float fireRate = 0.5f;
+	[SerializeField] private int lives = 3;
 	
 	[SerializeField] private Transform gunPosition;
 	[SerializeField] private GameObject prefabLaser;
@@ -30,6 +31,17 @@ public class Player : MonoBehaviour
 	void LateUpdate()
 	{
 		CheckBounds();
+	}
+	
+	public void Damage()
+	{
+		lives--;
+		Debug.Log($"Your current lives: {lives}");
+		
+		if(lives <= 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 	
 	private void ReadInputMovement()
