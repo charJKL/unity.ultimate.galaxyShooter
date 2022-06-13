@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 	
 	[SerializeField] private Transform gunPosition;
 	[SerializeField] private GameObject prefabLaser;
+	[SerializeField] private SpawnManager spawnManager;
 	
 	[HideInInspector] private float fireTimeout = 0;
 	
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
 		
 		if(lives <= 0)
 		{
+			spawnManager.StopSpawning();
 			Destroy(this.gameObject);
 		}
 	}
