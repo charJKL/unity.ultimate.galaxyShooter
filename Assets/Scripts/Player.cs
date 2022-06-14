@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private Transform gunPosition;
 	[SerializeField] private Transform gunPositionLeftWing;
 	[SerializeField] private Transform gunPositionRightWing;
+	[SerializeField] private GameObject shield;
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private SpawnManager spawnManager;
 
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
 	{
 		if(hasShield)
 		{
-			hasShield = false;
+			DisableShield();
 			return;
 		}
 		lives--;
@@ -71,7 +72,14 @@ public class Player : MonoBehaviour
 	
 	public void EnableShield()
 	{
+		shield.SetActive(true);
 		hasShield = true;
+	}
+	
+	public void DisableShield()
+	{
+		shield.SetActive(false);
+		hasShield = false;
 	}
 	
 	private void ReadInputMovement()
