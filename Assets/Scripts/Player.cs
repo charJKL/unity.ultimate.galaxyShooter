@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] private float speed = 3.5f;
-	[SerializeField] private float fireRate = 0.5f;
-	[SerializeField] private int lives = 3;
-	
 	[SerializeField] private Transform gunPosition;
+	[SerializeField] private Transform gunPositionLeftWing;
+	[SerializeField] private Transform gunPositionRightWing;
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private SpawnManager spawnManager;
 	
-	[HideInInspector] private float fireTimeout = 0;
+	[SerializeField] private float speed = 3.5f;
+	[SerializeField] private float fireRate = 0.5f;
+	[SerializeField] private int lives = 3;
+	[SerializeField] private bool hasTripleShot = false;
 	
+	[HideInInspector] private float fireTimeout = 0;
+
 	void Start()
 	{
 		transform.position = new Vector3(0,0,0);
@@ -45,6 +48,12 @@ public class Player : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+		
+	public void EnableTripleShot()
+	{
+		hasTripleShot = true;
+		StartCoroutine(TripleShotTimeoutRoutine());
+	}
 	
 	private void ReadInputMovement()
 	{
@@ -61,6 +70,11 @@ public class Player : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Space) && canFire)
 		{
 			Instantiate(prefabLaser, gunPosition.position, Quaternion.identity);
+			if(hasTripleShot)
+			{
+				Instantiate(prefabLaser, gunPositionLeftWing.position, Quaternion.identity);
+				Instantiate(prefabLaser, gunPositionRightWing.position, Quaternion.identity);
+			}
 			fireTimeout = Time.time + fireRate;
 		}
 	}
@@ -74,5 +88,11 @@ public class Player : MonoBehaviour
 		float boundInY = Mathf.Clamp(transform.position.y, rangeY.lower, rangeY.upper);
 		
 		transform.position = new Vector3(boundInX, boundInY, transform.position.z);
+	}
+	
+	private IEnumerator TripleShotTimeoutRoutine()
+	{
+		yield return new WaitForSeconds(5.0f);
+		hasTripleShot = false;
 	}
 }

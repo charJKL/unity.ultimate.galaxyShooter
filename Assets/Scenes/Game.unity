@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,6 +503,8 @@ MonoBehaviour:
   enemyContainer: {fileID: 1482925567}
   prefabEnemy: {fileID: 6589908364074134408, guid: d79caf5e290393847981fe2d6f07fe19,
     type: 3}
+  prefabPowerUp: {fileID: 47885028724612159, guid: 7287db1cfde760c4aa98a142caf28c85,
+    type: 3}
 --- !u!4 &1695109779
 Transform:
   m_ObjectHideFlags: 0
@@ -538,12 +540,12 @@ PrefabInstance:
     - target: {fileID: 4054260509284327550, guid: 5a7adb6b6884bf947a1d076ea6803569,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4054260509284327550, guid: 5a7adb6b6884bf947a1d076ea6803569,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 4054260509284327550, guid: 5a7adb6b6884bf947a1d076ea6803569,
         type: 3}
@@ -590,6 +592,5 @@ PrefabInstance:
       propertyPath: spawnManager
       value: 
       objectReference: {fileID: 1695109778}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a7adb6b6884bf947a1d076ea6803569, type: 3}

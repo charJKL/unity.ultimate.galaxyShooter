@@ -6,12 +6,17 @@ public class SpawnManager : MonoBehaviour
 {
 	[SerializeField] private Transform enemyContainer;
 	[SerializeField] private GameObject prefabEnemy;
+	[SerializeField] private GameObject prefabPowerUp;
 	
 	[HideInInspector] private bool keepSpawing = true;
+	
+	private (float left, float right) rangeX = (-10.0f, 10.0f);
+	private (float top, float down) rangeY = (7.0f, -6.0f);
 	
 	private void Start()
 	{
 		StartCoroutine(SpawnEnemyRoutine());
+		StartCoroutine(SpawnPowerUpRoutine());
 	}
 	
 	public void StopSpawning()
@@ -21,9 +26,6 @@ public class SpawnManager : MonoBehaviour
 	
 	IEnumerator SpawnEnemyRoutine()
 	{
-		(float left, float right) rangeX = (-10.0f, 10.0f);
-		(float top, float down) rangeY = (7.0f, -6.0f);
-		
 		while(keepSpawing)
 		{
 			float randomInHorizontal = Random.Range(rangeX.left, rangeX.right);
@@ -32,4 +34,20 @@ public class SpawnManager : MonoBehaviour
 			yield return new WaitForSeconds(5.0f);
 		}
 	}
+	
+	private IEnumerator SpawnPowerUpRoutine()
+	{
+		(float from, float to) timeout = (5.0f, 10.0f);
+		
+		while(keepSpawing)
+		{
+			float randomInHorizontal = Random.Range(rangeX.left, rangeX.right);
+			float randomTimeout = Random.Range(timeout.from, timeout.to);
+			
+			Vector3 position = new Vector3(randomInHorizontal, rangeY.top, 0);
+			Instantiate(prefabPowerUp, position, Quaternion.identity);
+			yield return new WaitForSeconds(randomTimeout);
+		}
+	}
+	
 }
