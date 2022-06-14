@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
 	[SerializeField] private Transform enemyContainer;
 	[SerializeField] private GameObject prefabEnemy;
-	[SerializeField] private GameObject prefabPowerUp;
+	[SerializeField] private GameObject[] powerups;
 	
 	[HideInInspector] private bool keepSpawing = true;
 	
@@ -40,9 +40,10 @@ public class SpawnManager : MonoBehaviour
 		{
 			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
 			float randomTimeout = Random.Range(timeout.from, timeout.to);
+			int randomPowerup = Random.Range(0, powerups.Length-1);
 			
 			Vector3 position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
-			Instantiate(prefabPowerUp, position, Quaternion.identity);
+			Instantiate(powerups[randomPowerup], position, Quaternion.identity);
 			yield return new WaitForSeconds(randomTimeout);
 		}
 	}

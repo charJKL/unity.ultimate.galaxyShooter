@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private Transform gunPositionRightWing;
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private SpawnManager spawnManager;
+	[SerializeField] const float BASE_SPEED = 5.0f;
 	
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.5f;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
 	
 	[HideInInspector] private float fireTimeout = 0;
 	
-	const float BASE_SPEED = 3.5f;
+	
 	
 	void Start()
 	{
