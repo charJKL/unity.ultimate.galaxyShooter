@@ -466,7 +466,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &734656125
 GameObject:
@@ -1223,7 +1223,6 @@ MonoBehaviour:
   - {fileID: 47885028724612159, guid: 7287db1cfde760c4aa98a142caf28c85, type: 3}
   - {fileID: 8583792882994018206, guid: e5a4facfc9e4eff42b98987eb2c9dfec, type: 3}
   - {fileID: 7438152240506411818, guid: f002fb27d7631f84b8a443c188de2d75, type: 3}
-  keepSpawing: 1
 --- !u!4 &1695109779
 Transform:
   m_ObjectHideFlags: 0
@@ -1237,7 +1236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4054260507517597736
 PrefabInstance:
@@ -1316,6 +1315,11 @@ PrefabInstance:
       propertyPath: managerGame
       value: 
       objectReference: {fileID: 572153064}
+    - target: {fileID: 4054260509284327551, guid: 5a7adb6b6884bf947a1d076ea6803569,
+        type: 3}
+      propertyPath: managerSpawn
+      value: 
+      objectReference: {fileID: 1695109778}
     - target: {fileID: 4054260509284327551, guid: 5a7adb6b6884bf947a1d076ea6803569,
         type: 3}
       propertyPath: spawnManager
