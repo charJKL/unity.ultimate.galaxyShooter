@@ -81,11 +81,8 @@ public class Player : MonoBehaviour
 	
 	private void CheckBounds()
 	{
-		(float lower, float upper) rangeX = (-9.0f, 9.0f);
-		(float lower, float upper) rangeY = (-4.0f, 6.0f);
-
-		float boundInX = Mathf.Clamp(transform.position.x, rangeX.lower, rangeX.upper);
-		float boundInY = Mathf.Clamp(transform.position.y, rangeY.lower, rangeY.upper);
+		float boundInX = Mathf.Clamp(transform.position.x, SceneMetrics.boundXRange.left, SceneMetrics.boundXRange.right);
+		float boundInY = Mathf.Clamp(transform.position.y, SceneMetrics.boundYRange.bottom, SceneMetrics.boundYRange.top);
 		
 		transform.position = new Vector3(boundInX, boundInY, transform.position.z);
 	}

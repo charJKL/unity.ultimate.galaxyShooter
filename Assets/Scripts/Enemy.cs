@@ -9,17 +9,11 @@ public class Enemy : MonoBehaviour
 	private void FixedUpdate()
 	{
 		transform.Translate(Vector3.down * speed * Time.deltaTime);
-	}
-	
-	private void LateUpdate()
-	{
-		(float left, float right) rangeX = (-10.0f, 10.0f);
-		(float top, float down) rangeY = (7.0f, -6.0f);
 		
-		if(transform.position.y < rangeY.down)
+		if(transform.position.y < SceneMetrics.spawnYRange.bottom)
 		{
-			float randomInHorizontal = Random.Range(rangeX.left, rangeX.right);
-			transform.position = new Vector3(randomInHorizontal, rangeY.top, 0);
+			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
+			transform.position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
 		}
 	}
 	
@@ -36,8 +30,7 @@ public class Enemy : MonoBehaviour
 				break;
 				
 			case PLAYER:
-				Player player = other.GetComponent<Player>();
-				player.Damage(); 
+				other.GetComponent<Player>().Damage();
 				Destroy(this.gameObject);
 				break;
 		}

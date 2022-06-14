@@ -9,12 +9,10 @@ public class Laser : MonoBehaviour
 	void FixedUpdate()
 	{
 		transform.Translate(Vector3.up * speed * Time.deltaTime);
-	}
-	
-	void LateUpdate()
-	{
-		(float lower, float upper) rangeY = (0.0f, 8.0f);
 		
-		if(transform.position.y > rangeY.upper) Destroy(gameObject);
+		if(transform.position.y > SceneMetrics.spawnYRange.top)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }

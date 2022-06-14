@@ -10,9 +10,6 @@ public class SpawnManager : MonoBehaviour
 	
 	[HideInInspector] private bool keepSpawing = true;
 	
-	private (float left, float right) rangeX = (-10.0f, 10.0f);
-	private (float top, float down) rangeY = (7.0f, -6.0f);
-	
 	private void Start()
 	{
 		StartCoroutine(SpawnEnemyRoutine());
@@ -24,12 +21,12 @@ public class SpawnManager : MonoBehaviour
 		keepSpawing = false;
 	}
 	
-	IEnumerator SpawnEnemyRoutine()
+	private IEnumerator SpawnEnemyRoutine()
 	{
 		while(keepSpawing)
 		{
-			float randomInHorizontal = Random.Range(rangeX.left, rangeX.right);
-			Vector3 position = new Vector3(randomInHorizontal, rangeY.top, 0);
+			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
+			Vector3 position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
 			Instantiate(prefabEnemy, position, Quaternion.identity, enemyContainer);
 			yield return new WaitForSeconds(5.0f);
 		}
@@ -41,10 +38,10 @@ public class SpawnManager : MonoBehaviour
 		
 		while(keepSpawing)
 		{
-			float randomInHorizontal = Random.Range(rangeX.left, rangeX.right);
+			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
 			float randomTimeout = Random.Range(timeout.from, timeout.to);
 			
-			Vector3 position = new Vector3(randomInHorizontal, rangeY.top, 0);
+			Vector3 position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
 			Instantiate(prefabPowerUp, position, Quaternion.identity);
 			yield return new WaitForSeconds(randomTimeout);
 		}
