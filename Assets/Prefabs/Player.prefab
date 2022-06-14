@@ -190,10 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7391b901f024b1f42b6b8742e2545448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPosition: {fileID: 4054260508733110153}
-  gunPositionLeftWing: {fileID: 432710677402205563}
-  gunPositionRightWing: {fileID: 3541337129030893665}
-  shield: {fileID: 480757320948712240}
   prefabLaser: {fileID: 6161415878766618514, guid: 032f16573d459ec4fb216a3a8879bb98,
     type: 3}
   spawnManager: {fileID: 0}
@@ -202,6 +198,9 @@ MonoBehaviour:
   lives: 3
   hasTripleShot: 0
   hasShield: 0
+  gunPosition: {fileID: 0}
+  gunPositionLeftWing: {fileID: 0}
+  gunPositionRightWing: {fileID: 0}
 --- !u!1 &6052414090021239079
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,12 +316,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1faa1bb7481899046854622a62b9fc24, type: 3}
---- !u!1 &480757320948712240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3804622785280483147, guid: 1faa1bb7481899046854622a62b9fc24,
-    type: 3}
-  m_PrefabInstance: {fileID: 3631944740130331771}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &536931582553012566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3824912960335357229, guid: 1faa1bb7481899046854622a62b9fc24,

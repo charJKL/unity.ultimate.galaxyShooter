@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] private Transform gunPosition;
-	[SerializeField] private Transform gunPositionLeftWing;
-	[SerializeField] private Transform gunPositionRightWing;
-	[SerializeField] private GameObject shield;
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private SpawnManager spawnManager;
 
 	[SerializeField] private float speed = BASE_SPEED;
-	[SerializeField] private float fireRate = 0.5f;
+	[SerializeField] private float fireRate = 0.15f;
 	[SerializeField] private int lives = 3;
 	[SerializeField] private bool hasTripleShot = false;
 	[SerializeField] private bool hasShield = false;
 	
+	[HideInInspector] private Transform gunPosition;
+	[HideInInspector] private Transform gunPositionLeftWing;
+	[HideInInspector] private Transform gunPositionRightWing;
+	[HideInInspector] private GameObject shield;
 	[HideInInspector] private float fireTimeout = 0;
 	
 	const float BASE_SPEED = 5.0f;
+	
+	void Awake()
+	{
+		gunPosition = transform.Find("GunPosition");
+		gunPositionLeftWing = transform.Find("GunPositionLeftWing");
+		gunPositionRightWing = transform.Find("GunPositionRightWing");
+		shield = transform.Find("Shield").gameObject;
+	}
 	
 	void Start()
 	{
