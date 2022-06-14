@@ -10,13 +10,15 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private SpawnManager spawnManager;
 	
-	[SerializeField] private float speed = 3.5f;
+	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.5f;
 	[SerializeField] private int lives = 3;
 	[SerializeField] private bool hasTripleShot = false;
 	
 	[HideInInspector] private float fireTimeout = 0;
-
+	
+	const float BASE_SPEED = 3.5f;
+	
 	void Start()
 	{
 		transform.position = new Vector3(0,0,0);
@@ -55,6 +57,12 @@ public class Player : MonoBehaviour
 		StartCoroutine(TripleShotTimeoutRoutine());
 	}
 	
+	public void EnableSpeedup()
+	{
+		speed = 8.0f;
+		StartCoroutine(SpeedupTimeoutRoutine());
+	}
+	
 	private void ReadInputMovement()
 	{
 		float horizontal = Input.GetAxis("Horizontal");
@@ -91,5 +99,11 @@ public class Player : MonoBehaviour
 	{
 		yield return new WaitForSeconds(5.0f);
 		hasTripleShot = false;
+	}
+	
+	private IEnumerator SpeedupTimeoutRoutine()
+	{
+		yield return new WaitForSeconds(5.0f);
+		speed = BASE_SPEED;
 	}
 }
