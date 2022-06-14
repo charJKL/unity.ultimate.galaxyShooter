@@ -11,6 +11,7 @@ public class uiCanvas : MonoBehaviour
 	[HideInInspector] private Image lives;
 	[HideInInspector] private TextMeshProUGUI score;
 	[HideInInspector] private GameObject gameOver;
+	[HideInInspector] private GameObject restart;
 	
 	[SerializeField] private bool showGameOver = false;
 	
@@ -19,6 +20,7 @@ public class uiCanvas : MonoBehaviour
 		lives = transform.Find("Lives").GetComponent<Image>();
 		score = transform.Find("Score").GetComponent<TextMeshProUGUI>();
 		gameOver = transform.Find("GameOver").gameObject;
+		restart = transform.Find("Restart").gameObject;
 	}
 	
 	public void RefreshScore(int current)
@@ -32,9 +34,10 @@ public class uiCanvas : MonoBehaviour
 		lives.sprite = spriteLive[livesIndex];
 	}
 	
-	public void ShowGameOver()
+	public void RefreshGameOverStatus(bool status)
 	{
-		showGameOver = true;
+		showGameOver = status;
+		restart.SetActive(status);
 		StartCoroutine(FlikerGameOverRoutine());
 	}
 	
