@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 	const string LASER = "Laser";
 	const string PLAYER = "Player";
 	
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
 		switch(other.tag)
 		{
