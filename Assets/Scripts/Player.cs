@@ -6,9 +6,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabLaser;
-	[SerializeField] private SpawnManager spawnManager;
-	[SerializeField] private uiCanvas uiCanvas;
+	[SerializeField] private ManagerSpawn managerSpawn;
 	[SerializeField] private ManagerGame managerGame;
+	[SerializeField] private uiCanvas uiCanvas;
 
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.15f;
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 		if(lives <= 0)
 		{
 			managerGame.isGameOver = true;
-			spawnManager.StopSpawning();
+			managerSpawn.StopSpawning();
 			uiCanvas.RefreshGameOverStatus(true);
 			Destroy(this.gameObject);
 		}

@@ -1198,7 +1198,7 @@ GameObject:
   - component: {fileID: 1695109779}
   - component: {fileID: 1695109778}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: ManagerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1223,6 +1223,7 @@ MonoBehaviour:
   - {fileID: 47885028724612159, guid: 7287db1cfde760c4aa98a142caf28c85, type: 3}
   - {fileID: 8583792882994018206, guid: e5a4facfc9e4eff42b98987eb2c9dfec, type: 3}
   - {fileID: 7438152240506411818, guid: f002fb27d7631f84b8a443c188de2d75, type: 3}
+  keepSpawing: 1
 --- !u!4 &1695109779
 Transform:
   m_ObjectHideFlags: 0

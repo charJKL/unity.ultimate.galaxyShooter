@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class ManagerSpawn : MonoBehaviour
 {
 	[SerializeField] private Transform enemyContainer;
 	[SerializeField] private GameObject prefabEnemy;
