@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
 		{
 			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
 			float randomTimeout = Random.Range(timeout.from, timeout.to);
-			int randomPowerup = Random.Range(0, powerups.Length-1);
+			int randomPowerup = Random.Range(0, powerups.Length); // if used with int upper boundary is exclusive ! hence is safe to use powerups.Lenght (we dont need to subtract -1).
 			
 			Vector3 position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
 			Instantiate(powerups[randomPowerup], position, Quaternion.identity);
