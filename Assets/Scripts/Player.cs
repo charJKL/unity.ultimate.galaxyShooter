@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private SpawnManager spawnManager;
+	[SerializeField] private uiCanvas uiCanvas;
 
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.15f;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
 	[HideInInspector] private Transform gunPositionRightWing;
 	[HideInInspector] private GameObject shield;
 	[HideInInspector] private float fireTimeout = 0;
+	[HideInInspector] private int score = 0;
 	
 	const float BASE_SPEED = 5.0f;
 	
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		transform.position = new Vector3(0,0,0);
+		uiCanvas.RefreshScore(score);
+		uiCanvas.RefreshLive(lives);
 	}
 	
 	void FixedUpdate()
@@ -56,12 +60,14 @@ public class Player : MonoBehaviour
 			DisableShield();
 			return;
 		}
+		
 		lives--;
-		Debug.Log($"Your current lives: {lives}");
+		uiCanvas.RefreshLive(lives);
 		
 		if(lives <= 0)
 		{
 			spawnManager.StopSpawning();
+			uiCanvas.ShowGameOver();
 			Destroy(this.gameObject);
 		}
 	}
@@ -88,6 +94,12 @@ public class Player : MonoBehaviour
 	{
 		shield.SetActive(false);
 		hasShield = false;
+	}
+	
+	public void AddScore(int amount)
+	{
+		score += amount;
+		uiCanvas.RefreshScore(score);
 	}
 	
 	private void ReadInputMovement()
