@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
 	[HideInInspector] private Player player;
 	[HideInInspector] private Animator animator;
 	
+	[HideInInspector] private bool isDestroyed = false;
+	
 	const string EXPLODE_ANIMATION_TRIGGER = "explode";
 	const string LASER = "Laser";
 	const string PLAYER = "Player";
@@ -17,14 +19,13 @@ public class Enemy : MonoBehaviour
 	{
 		player = GameObject.Find("Player").GetComponent<Player>();
 		animator = this.GetComponent<Animator>();
-		
 	}
 	
 	private void FixedUpdate()
 	{
 		transform.Translate(Vector3.down * speed * Time.deltaTime);
 		
-		if(transform.position.y < SceneMetrics.spawnYRange.bottom)
+		if(transform.position.y < SceneMetrics.spawnYRange.bottom && isDestroyed == false)
 		{
 			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
 			transform.position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
@@ -51,6 +52,7 @@ public class Enemy : MonoBehaviour
 	private void DestroySelf()
 	{
 		animator.SetTrigger(EXPLODE_ANIMATION_TRIGGER);
+		isDestroyed = true;
 	}
 	
 	// Event handler for event animation
