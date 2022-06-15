@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-	[SerializeField] private float rotation = 20.0f;
-	
 	[SerializeField] private GameObject animationExplosion;
+	[SerializeField] private ManagerSpawn managerSpawn;
+	
+	[SerializeField] private float rotation = 20.0f;
 	
 	private void FixedUpdate()
 	{
@@ -23,6 +24,7 @@ public class Asteroid : MonoBehaviour
 				Instantiate(animationExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
 				Destroy(this.gameObject, 0.25f);
+				managerSpawn.StartSpawning();
 				break;
 		}
 	}

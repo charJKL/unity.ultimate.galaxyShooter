@@ -10,7 +10,7 @@ public class ManagerSpawn : MonoBehaviour
 	
 	[HideInInspector] private bool keepSpawing = true;
 	
-	private void Start()
+	public void StartSpawning()
 	{
 		StartCoroutine(SpawnEnemyRoutine());
 		StartCoroutine(SpawnPowerUpRoutine());

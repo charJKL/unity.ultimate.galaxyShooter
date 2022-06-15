@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 	[HideInInspector] private Transform gunPosition;
 	[HideInInspector] private Transform gunPositionLeftWing;
 	[HideInInspector] private Transform gunPositionRightWing;
+	[HideInInspector] private GameObject engineLeftMalfunction;
+	[HideInInspector] private GameObject engineRightMalfunction;
 	[HideInInspector] private GameObject shield;
 	[HideInInspector] private float fireTimeout = 0;
 	[HideInInspector] private int score = 0;
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
 		gunPosition = transform.Find("GunPosition");
 		gunPositionLeftWing = transform.Find("GunPositionLeftWing");
 		gunPositionRightWing = transform.Find("GunPositionRightWing");
+		engineLeftMalfunction = transform.Find("EngineLeftMalfunction").gameObject;
+		engineRightMalfunction = transform.Find("EngineRightMalfunction").gameObject;
 		shield = transform.Find("Shield").gameObject;
 	}
 	
@@ -65,6 +69,12 @@ public class Player : MonoBehaviour
 		
 		lives--;
 		uiCanvas.RefreshLive(lives);
+		
+		switch(lives)
+		{
+			case 2: engineLeftMalfunction.SetActive(true); break;
+			case 1: engineRightMalfunction.SetActive(true); break;
+		}
 		
 		if(lives <= 0)
 		{
