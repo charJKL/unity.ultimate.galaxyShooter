@@ -16,7 +16,6 @@ public class ManagerGame : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.R) && isGameOver)
 		{
-			Debug.Log("Load Scene");
 			SceneManager.LoadScene("Game");
 		}
 	}
