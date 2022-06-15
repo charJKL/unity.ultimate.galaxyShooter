@@ -51,6 +51,11 @@ public class Enemy : MonoBehaviour
 	private void DestroySelf()
 	{
 		animator.SetTrigger(EXPLODE_ANIMATION_TRIGGER);
-		Destroy(this.gameObject, 2.0f);
+	}
+	
+	// Event handler for event animation
+	public void OnExplosionEnd()
+	{
+		Destroy(this.gameObject);
 	}
 }
