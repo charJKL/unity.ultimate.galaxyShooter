@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 	
 	[HideInInspector] private Player player;
 	[HideInInspector] private Animator animator;
+	[HideInInspector] private AudioSource audioSource;
 	
 	[HideInInspector] private bool isDestroyed = false;
 	
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
 	{
 		player = GameObject.Find("Player").GetComponent<Player>();
 		animator = this.GetComponent<Animator>();
+		audioSource = this.GetComponent<AudioSource>();
 	}
 	
 	private void FixedUpdate()
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour
 	private void DestroySelf()
 	{
 		animator.SetTrigger(EXPLODE_ANIMATION_TRIGGER);
+		audioSource.Play();
 		isDestroyed = true;
 	}
 	

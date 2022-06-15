@@ -10,7 +10,7 @@ public class Powerup : MonoBehaviour
 	
 	[SerializeField] private float speed = 3.0f;
 	[SerializeField] private PowerUpType type;
-	
+	[SerializeField] private AudioClip audioCollect;
 	
 	private void FixedUpdate()
 	{
@@ -42,6 +42,7 @@ public class Powerup : MonoBehaviour
 						break;
 				}
 				
+				AudioSource.PlayClipAtPoint(audioCollect, transform.position);
 				Destroy(this.gameObject);
 				break;
 		}

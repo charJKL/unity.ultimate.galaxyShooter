@@ -158,3 +158,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  type: 0
+  audioCollect: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private ManagerSpawn managerSpawn;
 	[SerializeField] private ManagerGame managerGame;
 	[SerializeField] private uiCanvas uiCanvas;
+	[SerializeField] private AudioClip audioLaser;
 
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.15f;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
 	[HideInInspector] private GameObject engineLeftMalfunction;
 	[HideInInspector] private GameObject engineRightMalfunction;
 	[HideInInspector] private GameObject shield;
+	[HideInInspector] private AudioSource audioSource;
 	[HideInInspector] private float fireTimeout = 0;
 	[HideInInspector] private int score = 0;
 	
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
 		engineLeftMalfunction = transform.Find("EngineLeftMalfunction").gameObject;
 		engineRightMalfunction = transform.Find("EngineRightMalfunction").gameObject;
 		shield = transform.Find("Shield").gameObject;
+		audioSource = GetComponent<AudioSource>();
 	}
 	
 	void Start()
@@ -135,6 +138,8 @@ public class Player : MonoBehaviour
 				Instantiate(prefabLaser, gunPositionLeftWing.position, Quaternion.identity);
 				Instantiate(prefabLaser, gunPositionRightWing.position, Quaternion.identity);
 			}
+			audioSource.clip = audioLaser;
+			audioSource.Play();
 			fireTimeout = Time.time + fireRate;
 		}
 	}
