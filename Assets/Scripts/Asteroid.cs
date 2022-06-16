@@ -18,7 +18,7 @@ public class Asteroid : MonoBehaviour
 	{
 		switch(other.tag)
 		{
-			case SceneMetrics.TAG_LASER:
+			case SceneMetrics.TAG_LASER_PLAYER:
 				Instantiate(animationExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
 				Destroy(this.gameObject, 0.25f);

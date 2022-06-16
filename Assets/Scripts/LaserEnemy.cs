@@ -15,15 +15,4 @@ public class LaserEnemy : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
-	
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		switch(other.tag)
-		{
-			case SceneMetrics.TAG_PLAYER:
-				other.GetComponent<Player>().Damage();
-				Destroy(this.gameObject);
-				break;
-		}
-	}
 }

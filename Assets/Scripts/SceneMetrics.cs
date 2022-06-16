@@ -11,5 +11,6 @@ public static class SceneMetrics
 	static public (float bottom, float top) spawnYRange = (-7.0f, 7.0f);
 	
 	public const string TAG_PLAYER = "Player";
-	public const string TAG_LASER = "Laser";
+	public const string TAG_LASER_PLAYER = "LaserPlayer";
+	public const string TAG_LASER_ENEMY = "LaserEnemy";
 }

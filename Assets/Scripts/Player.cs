@@ -118,6 +118,17 @@ public class Player : MonoBehaviour
 		uiCanvas.RefreshScore(score);
 	}
 	
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		switch(other.tag)
+		{
+			case SceneMetrics.TAG_LASER_ENEMY:
+				Destroy(other.gameObject); // destory laser
+				this.Damage();
+				break;
+		}
+	}
+	
 	private void ReadInputMovement()
 	{
 		float horizontal = Input.GetAxis("Horizontal");

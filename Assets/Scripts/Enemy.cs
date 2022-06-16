@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 	{
 		switch(other.tag)
 		{
-			case SceneMetrics.TAG_LASER:
+			case SceneMetrics.TAG_LASER_PLAYER:
 				if(player != null) player.AddScore(12);
 				Destroy(other.gameObject);
 				DestroySelf();
@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour
 	// Event handler for event animation
 	public void OnExplosionDispersion()
 	{
-		Debug.Log("delte collider");
 		Destroy(gameObject.GetComponent<Collider2D>());
 	}
 	
