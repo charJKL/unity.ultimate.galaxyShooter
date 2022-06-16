@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private float speed = 4.0f;
-	[SerializeField] private (float min, float max) shootRate = (3.0f, 6.0f);
+	[SerializeField] private (float min, float max) shootRate = (0.5f, 3.0f);
 	
 	[HideInInspector] private Transform gunPosition;
 	[HideInInspector] private Player player;
