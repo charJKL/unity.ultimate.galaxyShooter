@@ -6,10 +6,6 @@ using TMPro;
 
 public class uiCanvas : MonoBehaviour
 {
-	[SerializeField] private Sprite[] spriteLive;
-	
-	[HideInInspector] private Image lives;
-	[HideInInspector] private TextMeshProUGUI score;
 	[HideInInspector] private GameObject gameOver;
 	[HideInInspector] private GameObject restart;
 	
@@ -17,21 +13,8 @@ public class uiCanvas : MonoBehaviour
 	
 	private void Awake()
 	{
-		lives = transform.Find("Lives").GetComponent<Image>();
-		score = transform.Find("Score").GetComponent<TextMeshProUGUI>();
 		gameOver = transform.Find("GameOver").gameObject;
 		restart = transform.Find("Restart").gameObject;
-	}
-	
-	public void RefreshScore(int current)
-	{
-		score.text = $"Score: {current}";
-	}
-	
-	public void RefreshLive(int live)
-	{
-		int livesIndex = Mathf.Clamp(live, 0, spriteLive.Length);
-		lives.sprite = spriteLive[livesIndex];
 	}
 	
 	public void RefreshGameOverStatus(bool status)

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private ManagerSpawn managerSpawn;
 	[SerializeField] private ManagerGame managerGame;
-	[SerializeField] private uiCanvas uiCanvas;
+	[SerializeField] private uiScore uiScore;
 	[SerializeField] private AudioClip audioLaser;
 
 	[SerializeField] private ControlSchema controlSchema;
@@ -50,8 +50,8 @@ public class Player : MonoBehaviour
 	
 	void Start()
 	{
-		uiCanvas.RefreshScore(score);
-		uiCanvas.RefreshLive(lives);
+		uiScore.RefreshScore(score);
+		uiScore.RefreshLive(lives);
 	}
 	
 	void FixedUpdate()
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
 		}
 		
 		lives--;
-		uiCanvas.RefreshLive(lives);
+		uiScore.RefreshLive(lives);
 		
 		switch(lives)
 		{
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
 		{
 			managerGame.isGameOver = true;
 			managerSpawn.StopSpawning();
-			uiCanvas.RefreshGameOverStatus(true);
+			//uiScore.RefreshGameOverStatus(true);
 			Destroy(this.gameObject);
 		}
 	}
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 	public void AddScore(int amount)
 	{
 		score += amount;
-		uiCanvas.RefreshScore(score);
+		uiScore.RefreshScore(score);
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other)
