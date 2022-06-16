@@ -2,19 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Ui;
+using System;
 
 public class ManagerGame : MonoBehaviour
 {
+	[SerializeField] private ManagerSpawn managerSpawn;
+	[SerializeField] private uiCanvas uiCanvas;
 	[SerializeField] private uiPause uiPause;
 	[SerializeField] public bool isGameOver = false;
 	[SerializeField] private bool isGamePaused = false;
 	
-	[HideInInspector] public GameObject[] players;
+	[HideInInspector] public List<GameObject> players;
 	
 	private void Awake()
 	{
-		players = GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER);
+		players = new List<GameObject>(GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER));
+		players.ForEach((GameObject gameObject) => gameObject.GetComponent<Player>().OnDestroyied += CheckIfGameIsOver);
+	}
+	
+	private void CheckIfGameIsOver(object sender, EventArgs args)
+	{
+		foreach(GameObject gameObject in players)
+		{
+			if(gameObject.GetComponent<Player>().isDestroyied == false) return;
+		}
+		
+		managerSpawn.StopSpawning();
+		uiCanvas.RefreshGameOverStatus(true);
+		isGameOver = true;
 	}
 	
 	private void Update()

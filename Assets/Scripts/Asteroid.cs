@@ -31,7 +31,7 @@ public class Asteroid : MonoBehaviour
 		if(isDestroyed) return;
 		Instantiate(animationExplosion, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);
-		managerSpawn.StartSpawning();
+		managerSpawn.StartSpawning(); // TODO move this to managerGame.
 		isDestroyed = true;
 	}
 }
