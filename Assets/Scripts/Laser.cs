@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Laser : MonoBehaviour
 {
@@ -13,19 +14,9 @@ public class Laser : MonoBehaviour
 	{
 		transform.Translate(direction * speed * Time.deltaTime);
 
-		if(OutOfRange(transform.position.y, SceneMetrics.spawnYRange))
+		if(Range.OutOfRange(transform.position.y, SceneMetrics.spawnYRange))
 		{
 			Destroy(this.gameObject);
 		}
-	}
-	
-	private bool OutOfRange(float value, (float min, float max) range)
-	{
-		return value < range.min || range.max < value;
-	}
-	
-	private bool InRange(float value, (float min, float max) range)
-	{
-		return range.min > value && value < range.max;
 	}
 }

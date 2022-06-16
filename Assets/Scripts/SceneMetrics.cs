@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public static class SceneMetrics
 {
-	static public (float left, float right) boundXRange = (-9.0f, 9.0f);
-	static public (float bottom, float top) boundYRange = (-4.0f, 6.0f);
+	public static RangeInHorizontal boundXRange = new RangeInHorizontal(-9.0f, 9.0f);
+	public static RangeInVertical boundYRange = new RangeInVertical(-4.0f, 6.0f);
 	
-	static public (float left, float right) spawnXRange = (-9.0f, 9.0f);
-	static public (float bottom, float top) spawnYRange = (-7.0f, 7.0f);
+	public static RangeInHorizontal spawnXRange = new RangeInHorizontal(-9.0f, 9.0f);
+	public static RangeInVertical spawnYRange = new RangeInVertical(-7.0f, 7.0f);
 	
 	public const string TAG_PLAYER = "Player";
 	public const string TAG_LASER_PLAYER = "LaserPlayer";
