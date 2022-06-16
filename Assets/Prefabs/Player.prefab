@@ -104,7 +104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1327494155
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 371fa23a16c2b470dbbdf50d24a9c247, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -397,10 +397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabLaser: {fileID: 6161415878766618514, guid: 032f16573d459ec4fb216a3a8879bb98,
     type: 3}
-  managerSpawn: {fileID: 0}
-  managerGame: {fileID: 0}
-  uiCanvas: {fileID: 0}
   audioLaser: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  uiScore: {fileID: 0}
   controlSchema:
     horizontal: HorizontalOne
     vertical: VerticalOne
@@ -483,7 +481,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1327494155
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 371fa23a16c2b470dbbdf50d24a9c247, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
