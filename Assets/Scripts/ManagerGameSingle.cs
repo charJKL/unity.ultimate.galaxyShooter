@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ManagerGameSingle : MonoBehaviour
+public class ManagerGame : MonoBehaviour
 {
 	[SerializeField] public bool isGameOver = false;
 	
@@ -18,6 +19,7 @@ public class ManagerGameSingle : MonoBehaviour
 		{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
+		
 		if(Input.GetKeyDown(KeyCode.Escape) && isGameOver)
 		{
 			SceneManager.LoadScene("Main");
