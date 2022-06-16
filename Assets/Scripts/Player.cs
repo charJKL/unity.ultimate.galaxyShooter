@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private ManagerSpawn managerSpawn;
-	[SerializeField] private ManagerGameSingle managerGame;
+	[SerializeField] private ManagerGame managerGame;
 	[SerializeField] private uiCanvas uiCanvas;
 	[SerializeField] private AudioClip audioLaser;
 
