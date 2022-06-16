@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Ui;
 
 public class ManagerGame : MonoBehaviour
 {
-	[SerializeField] private GameObject uiPause;
+	[SerializeField] private uiPause uiPause;
 	[SerializeField] public bool isGameOver = false;
 	[SerializeField] private bool isGamePaused = false;
 	
@@ -40,14 +41,14 @@ public class ManagerGame : MonoBehaviour
 	
 	public void ResumeGame()
 	{
-		uiPause.SetActive(false);
+		uiPause.Hide();
 		Time.timeScale = 1;
 		isGamePaused = false;
 	}
 	
 	public void PauseGame()
 	{
-		uiPause.SetActive(true);
+		uiPause.Show();
 		Time.timeScale = 0;
 		isGamePaused = true;
 	}

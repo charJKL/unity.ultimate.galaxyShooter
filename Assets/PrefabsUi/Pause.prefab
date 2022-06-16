@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 6385660641610117936}
   - component: {fileID: 6385660641610117937}
   - component: {fileID: 9102178376850575985}
+  - component: {fileID: 6188654821752864702}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -496,6 +497,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managerGame: {fileID: 0}
+--- !u!95 &6188654821752864702
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385660641610117939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af50b20e4b79aa54c9275baaf5b8fffe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6385660642280050892
 GameObject:
   m_ObjectHideFlags: 0
