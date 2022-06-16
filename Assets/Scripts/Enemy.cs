@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 	[HideInInspector] private Animator animator;
 	[HideInInspector] private AudioSource audioSource;
 	[HideInInspector] private bool isDestroyed = false;
+	[HideInInspector] private float fireTimeout = 0;
 	
 	const string EXPLODE_ANIMATION_TRIGGER = "explode";
 	
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
 	
 	private void Start()
 	{
-		StartCoroutine(ShootingRoutine());
+		fireTimeout = Time.time + Random.Range(shootRate.min, shootRate.max);
 	}
 	
 	private void FixedUpdate()
@@ -37,6 +38,17 @@ public class Enemy : MonoBehaviour
 		{
 			float randomInHorizontal = Random.Range(SceneMetrics.spawnXRange.left, SceneMetrics.spawnXRange.right);
 			transform.position = new Vector3(randomInHorizontal, SceneMetrics.spawnYRange.top, 0);
+		}
+	}
+	
+	private void Update()
+	{
+		bool canFire = Time.time > fireTimeout;
+		if(isDestroyed == false && canFire)
+		{
+			Instantiate(prefabLaser, gunPosition.position, Quaternion.identity);
+			float wait = Random.Range(shootRate.min, shootRate.max);
+			fireTimeout = Time.time + wait;
 		}
 	}
 	
@@ -54,17 +66,6 @@ public class Enemy : MonoBehaviour
 				other.GetComponent<Player>().Damage();
 				DestroySelf();
 				break;
-		}
-	}
-	
-	private IEnumerator ShootingRoutine()
-	{
-		while(true)
-		{
-			if(isDestroyed == true) break;
-			float wait = Random.Range(shootRate.min, shootRate.max);
-			yield return new WaitForSeconds(wait);
-			Instantiate(prefabLaser, gunPosition.position, Quaternion.identity);
 		}
 	}
 
