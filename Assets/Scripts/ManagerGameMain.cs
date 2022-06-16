@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ManagerGameMain : MonoBehaviour
 {
-	public void LoadLevel()
+	public void LoadSignleMode()
 	{
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Single");
+	}
+	
+	public void LoadMultiMode()
+	{
+		SceneManager.LoadScene("Multi");
 	}
 }
