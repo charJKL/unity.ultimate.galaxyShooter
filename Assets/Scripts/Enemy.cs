@@ -19,7 +19,6 @@ public class Enemy : MonoBehaviour
 	
 	private void Awake()
 	{
-		player = GameObject.Find("Player").GetComponent<Player>();
 		gunPosition = transform.Find("GunPosition");
 		animator = this.GetComponent<Animator>();
 		audioSource = this.GetComponent<AudioSource>();
@@ -57,7 +56,7 @@ public class Enemy : MonoBehaviour
 		switch(other.tag)
 		{
 			case SceneMetrics.TAG_LASER_PLAYER:
-				if(player != null) player.AddScore(12);
+				other.GetComponent<Laser>().owner.GetComponent<Player>().AddScore(12);
 				Destroy(other.gameObject);
 				DestroySelf();
 				break;

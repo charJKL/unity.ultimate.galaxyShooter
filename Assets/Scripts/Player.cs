@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
 	
 	void Start()
 	{
-		transform.position = new Vector3(0,0,0);
 		uiCanvas.RefreshScore(score);
 		uiCanvas.RefreshLive(lives);
 	}
@@ -143,24 +142,30 @@ public class Player : MonoBehaviour
 		bool canFire = Time.time > fireTimeout;
 		if(Input.GetKeyDown(KeyCode.Space) && canFire)
 		{
-			Instantiate(prefabLaser, gunPosition.position, Quaternion.identity);
+			InstantiateLaserBeam(gunPosition.position);
 			if(hasTripleShot)
 			{
-				Instantiate(prefabLaser, gunPositionLeftWing.position, Quaternion.identity);
-				Instantiate(prefabLaser, gunPositionRightWing.position, Quaternion.identity);
+				InstantiateLaserBeam(gunPositionLeftWing.position);
+				InstantiateLaserBeam(gunPositionRightWing.position);
 			}
 			audioSource.clip = audioLaser;
 			audioSource.Play();
 			fireTimeout = Time.time + fireRate;
 		}
 	}
-	
+
 	private void CheckBounds()
 	{
 		float boundInX = Mathf.Clamp(transform.position.x, SceneMetrics.boundXRange.left, SceneMetrics.boundXRange.right);
 		float boundInY = Mathf.Clamp(transform.position.y, SceneMetrics.boundYRange.bottom, SceneMetrics.boundYRange.top);
 		
 		transform.position = new Vector3(boundInX, boundInY, transform.position.z);
+	}
+	
+	private void InstantiateLaserBeam(Vector3 position)
+	{
+		GameObject laser = Instantiate(prefabLaser, position, Quaternion.identity);
+							 laser.GetComponent<Laser>().owner = this.gameObject;
 	}
 	
 	private IEnumerator TripleShotTimeoutRoutine()
