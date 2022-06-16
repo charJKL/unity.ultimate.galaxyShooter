@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: HorizontalOne
+  m_VerticalAxis: VerticalOne
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
@@ -1803,5 +1803,20 @@ PrefabInstance:
       propertyPath: spawnManager
       value: 
       objectReference: {fileID: 1695109778}
+    - target: {fileID: 4054260509284327551, guid: 5a7adb6b6884bf947a1d076ea6803569,
+        type: 3}
+      propertyPath: controlSchema.shoot
+      value: ShootTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054260509284327551, guid: 5a7adb6b6884bf947a1d076ea6803569,
+        type: 3}
+      propertyPath: controlSchema.vertical
+      value: VerticalTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054260509284327551, guid: 5a7adb6b6884bf947a1d076ea6803569,
+        type: 3}
+      propertyPath: controlSchema.horizontal
+      value: HorizontalTwo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a7adb6b6884bf947a1d076ea6803569, type: 3}

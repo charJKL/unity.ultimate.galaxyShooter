@@ -401,6 +401,10 @@ MonoBehaviour:
   managerGame: {fileID: 0}
   uiCanvas: {fileID: 0}
   audioLaser: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  controlSchema:
+    horizontal: HorizontalOne
+    vertical: VerticalOne
+    shoot: ShootOne
   speed: 5
   fireRate: 0.15
   lives: 3

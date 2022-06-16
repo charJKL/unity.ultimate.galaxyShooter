@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct ControlSchema
+{
+	public string horizontal;
+	public string vertical;
+	public string shoot;
+}
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +18,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private uiCanvas uiCanvas;
 	[SerializeField] private AudioClip audioLaser;
 
+	[SerializeField] private ControlSchema controlSchema;
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.15f;
 	[SerializeField] private int lives = 3;
@@ -130,8 +138,8 @@ public class Player : MonoBehaviour
 	
 	private void ReadInputMovement()
 	{
-		float horizontal = Input.GetAxis("Horizontal");
-		float vertical = Input.GetAxis("Vertical");
+		float horizontal = Input.GetAxis(controlSchema.horizontal);
+		float vertical = Input.GetAxis(controlSchema.vertical);
 		
 		Vector3 direction = new Vector3(horizontal, vertical, 0);
 		transform.Translate(direction * speed * Time.deltaTime);
@@ -139,8 +147,9 @@ public class Player : MonoBehaviour
 	
 	private void ReadInputShoot()
 	{
+		bool shoot = Input.GetAxis(controlSchema.shoot) > 0;
 		bool canFire = Time.time > fireTimeout;
-		if(Input.GetKeyDown(KeyCode.Space) && canFire)
+		if(shoot && canFire)
 		{
 			InstantiateLaserBeam(gunPosition.position);
 			if(hasTripleShot)
