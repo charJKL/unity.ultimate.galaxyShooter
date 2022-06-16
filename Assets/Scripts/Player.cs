@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public struct ControlSchema
@@ -13,10 +14,8 @@ public struct ControlSchema
 public class Player : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabLaser;
-	[SerializeField] private ManagerSpawn managerSpawn;
-	[SerializeField] private ManagerGame managerGame;
-	[SerializeField] private uiScore uiScore;
 	[SerializeField] private AudioClip audioLaser;
+	[SerializeField] private uiScore uiScore;
 
 	[SerializeField] private ControlSchema controlSchema;
 	[SerializeField] private float speed = BASE_SPEED;
@@ -34,6 +33,9 @@ public class Player : MonoBehaviour
 	[HideInInspector] private AudioSource audioSource;
 	[HideInInspector] private float fireTimeout = 0;
 	[HideInInspector] private int score = 0;
+	
+	public event EventHandler OnDestroyied;
+	public bool isDestroyied { get { return lives == 0; } }
 	
 	const float BASE_SPEED = 5.0f;
 	
@@ -88,13 +90,10 @@ public class Player : MonoBehaviour
 		
 		if(lives <= 0)
 		{
-			managerGame.isGameOver = true;
-			managerSpawn.StopSpawning();
-			//uiScore.RefreshGameOverStatus(true);
-			Destroy(this.gameObject);
+			DestroySelf();
 		}
 	}
-		
+	
 	public void EnableTripleShot()
 	{
 		hasTripleShot = true;
@@ -162,7 +161,7 @@ public class Player : MonoBehaviour
 			fireTimeout = Time.time + fireRate;
 		}
 	}
-
+	
 	private void CheckBounds()
 	{
 		float boundInX = Mathf.Clamp(transform.position.x, SceneMetrics.boundXRange.left, SceneMetrics.boundXRange.right);
@@ -175,6 +174,12 @@ public class Player : MonoBehaviour
 	{
 		GameObject laser = Instantiate(prefabLaser, position, Quaternion.identity);
 							 laser.GetComponent<Laser>().owner = this.gameObject;
+	}
+	
+	private void DestroySelf()
+	{
+		OnDestroyied?.Invoke(this, EventArgs.Empty);
+		Destroy(this.gameObject);
 	}
 	
 	private IEnumerator TripleShotTimeoutRoutine()
