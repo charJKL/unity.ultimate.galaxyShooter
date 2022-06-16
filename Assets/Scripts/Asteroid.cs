@@ -6,8 +6,9 @@ public class Asteroid : MonoBehaviour
 {
 	[SerializeField] private GameObject animationExplosion;
 	[SerializeField] private ManagerSpawn managerSpawn;
-	
 	[SerializeField] private float rotation = 20.0f;
+	
+	[HideInInspector] private bool isDestroyed = false;
 	
 	private void FixedUpdate()
 	{
@@ -19,11 +20,18 @@ public class Asteroid : MonoBehaviour
 		switch(other.tag)
 		{
 			case SceneMetrics.TAG_LASER_PLAYER:
-				Instantiate(animationExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
-				Destroy(this.gameObject, 0.25f);
-				managerSpawn.StartSpawning();
+				DestroySelf();
 				break;
 		}
+	}
+	
+	private void DestroySelf()
+	{
+		if(isDestroyed) return;
+		Instantiate(animationExplosion, transform.position, Quaternion.identity);
+		Destroy(this.gameObject);
+		managerSpawn.StartSpawning();
+		isDestroyed = true;
 	}
 }

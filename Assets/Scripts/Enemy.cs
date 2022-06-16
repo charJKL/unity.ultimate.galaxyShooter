@@ -71,12 +71,10 @@ public class Enemy : MonoBehaviour
 
 	private void DestroySelf()
 	{
-		if(isDestroyed == false)
-		{
-			animator.SetTrigger(EXPLODE_ANIMATION_TRIGGER);
-			audioSource.Play();
-			isDestroyed = true;
-		}
+		if(isDestroyed) return;
+		animator.SetTrigger(EXPLODE_ANIMATION_TRIGGER);
+		audioSource.Play();
+		isDestroyed = true;
 	}
 	
 	// Event handler for event animation
