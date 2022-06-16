@@ -14,13 +14,11 @@ public class Asteroid : MonoBehaviour
 		transform.Rotate(Vector3.forward, rotation * Time.deltaTime);
 	}
 	
-	const string LASER = "Laser";
-	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		switch(other.tag)
 		{
-			case LASER:
+			case SceneMetrics.TAG_LASER:
 				Instantiate(animationExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
 				Destroy(this.gameObject, 0.25f);

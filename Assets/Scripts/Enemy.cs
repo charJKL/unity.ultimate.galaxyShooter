@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour
 	[HideInInspector] private bool isDestroyed = false;
 	
 	const string EXPLODE_ANIMATION_TRIGGER = "explode";
-	const string LASER = "Laser";
-	const string PLAYER = "Player";
 	
 	private void Awake()
 	{
@@ -38,13 +36,13 @@ public class Enemy : MonoBehaviour
 	{
 		switch(other.tag)
 		{
-			case LASER:
+			case SceneMetrics.TAG_LASER:
 				if(player != null) player.AddScore(12);
 				Destroy(other.gameObject);
 				DestroySelf();
 				break;
 				
-			case PLAYER:
+			case SceneMetrics.TAG_PLAYER:
 				other.GetComponent<Player>().Damage();
 				DestroySelf();
 				break;
