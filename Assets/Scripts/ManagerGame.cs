@@ -12,19 +12,20 @@ public class ManagerGame : MonoBehaviour
 	[SerializeField] public bool isGameOver = false;
 	[SerializeField] private bool isGamePaused = false;
 	
-	[HideInInspector] public List<GameObject> players;
+	[HideInInspector] public Player[] players;
 	
 	private void Awake()
 	{
-		players = new List<GameObject>(GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER));
-		players.ForEach((GameObject gameObject) => gameObject.GetComponent<Player>().OnDestroyied += CheckIfGameIsOver);
+		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER);
+		players = Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
+		Array.ForEach(players, (Player player) => player.OnDestroyied += CheckIfGameIsOver);
 	}
 	
 	private void CheckIfGameIsOver(object sender, EventArgs args)
 	{
-		foreach(GameObject gameObject in players)
+		foreach(Player player in players)
 		{
-			if(gameObject.GetComponent<Player>().isDestroyied == false) return;
+			if(player.isDestroyied == false) return;
 		}
 		
 		managerSpawn.StopSpawning();

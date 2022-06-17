@@ -563,6 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad179db42539f8479e9f769d13c4666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerSpawn: {fileID: 1695109778}
+  uiCanvas: {fileID: 734656130}
   uiPause: {fileID: 1051704544}
   isGameOver: 0
   isGamePaused: 0
@@ -699,11 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b49368c27f41bd4790fd648cb67d846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteLive:
-  - {fileID: 21300000, guid: ba53e111f0125654cabfd4eefaf3a657, type: 3}
-  - {fileID: 21300000, guid: 80fba5ece7697c44eacc036539c1b552, type: 3}
-  - {fileID: 21300000, guid: 482c8e4c0346b704aa5f1760c3c989d5, type: 3}
-  - {fileID: 21300000, guid: 9fe6f40efddf0b64fb68a3382b14a4db, type: 3}
   showGameOver: 0
 --- !u!224 &1051704541 stripped
 RectTransform:
