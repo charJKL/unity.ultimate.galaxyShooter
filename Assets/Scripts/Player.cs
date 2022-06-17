@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
 	
 	public event DestroyedDelegate<Player> OnDestroyed;
 	public bool isDestroyed { get { return lives <= 0; } }
+	public int Score{ get { return score; } }
 	
 	void Awake()
 	{

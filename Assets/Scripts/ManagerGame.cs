@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 public class ManagerGame : MonoBehaviour
 {
@@ -13,11 +14,20 @@ public class ManagerGame : MonoBehaviour
 	[SerializeField] public bool isGameOver = false;
 	[SerializeField] private bool isGamePaused = false;
 	
-	[HideInInspector] public Player[] players;
+	private string dataFilepath;
+	[HideInInspector] private Player[] players;
+	[HideInInspector] private List<int> scores;
+	
+	private struct Data 
+	{
+		public int[] scores;
+	}
 	
 	private void Awake()
 	{
+		dataFilepath = Application.dataPath + "/data.json";
 		players = FindAllPlayersObjects();
+		scores = loadData();
 		
 		asteroid.OnDestroyed += StartGame;
 		Array.ForEach(players, AssingPlayerListeners);
@@ -64,7 +74,9 @@ public class ManagerGame : MonoBehaviour
 	
 	private void SaveScore(Player player)
 	{
-		Debug.Log("");
+		scores.Add(player.Score);
+		scores.Reverse();
+		SaveData();
 	}
 	
 	private void CheckIfGameIsOver(Player player)
@@ -94,5 +106,22 @@ public class ManagerGame : MonoBehaviour
 	public void BackToMenu()
 	{
 		SceneManager.LoadScene("Main");
+	}
+	
+	private void SaveData()
+	{
+		Data data = new Data(){ scores = scores.ToArray() };
+		string json = JsonUtility.ToJson(data);
+		File.WriteAllText(dataFilepath, json);
+	}
+	
+	private List<int> loadData()
+	{
+		if(File.Exists(dataFilepath) == false) return new List<int>();
+		
+		string json = File.ReadAllText(dataFilepath);
+		Data data = JsonUtility.FromJson<Data>(json);
+		if(data.scores == null) return new List<int>();
+		return new List<int>(data.scores);
 	}
 }

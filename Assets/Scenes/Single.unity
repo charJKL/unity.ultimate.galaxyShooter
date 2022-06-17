@@ -564,11 +564,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managerSpawn: {fileID: 1695109778}
+  asteroid: {fileID: 1870103502}
   uiCanvas: {fileID: 734656130}
   uiPause: {fileID: 1051704544}
   isGameOver: 0
   isGamePaused: 0
-  players: []
 --- !u!4 &572153065
 Transform:
   m_ObjectHideFlags: 0
@@ -1294,6 +1294,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870103502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8287657940650915629, guid: 5a2041dad083e0b4a944faff2d86a4d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676651798}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e24ebd94cc7bf468f819f302bd82a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2038816961
 GameObject:
   m_ObjectHideFlags: 0
