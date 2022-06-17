@@ -16,21 +16,8 @@ public class ManagerGame : MonoBehaviour
 	
 	private void Awake()
 	{
-		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER);
-		players = Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
+		players = FindAllPlayersObjects();
 		Array.ForEach(players, (Player player) => player.OnDestroyed += CheckIfGameIsOver);
-	}
-	
-	private void CheckIfGameIsOver()
-	{
-		foreach(Player player in players)
-		{
-			if(player.isDestroyed == false) return;
-		}
-		
-		managerSpawn.StopSpawning();
-		uiCanvas.RefreshGameOverStatus(true);
-		isGameOver = true;
 	}
 	
 	private void Update()
@@ -52,6 +39,22 @@ public class ManagerGame : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Escape) && isGameOver)
 		{
 			BackToMenu();
+		}
+	}
+	
+	private Player[] FindAllPlayersObjects()
+	{
+		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER);
+		return Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
+	}
+	
+	private void CheckIfGameIsOver()
+	{
+		if(Array.TrueForAll(players, (Player player) => player.isDestroyed))
+		{
+			managerSpawn.StopSpawning();
+			uiCanvas.RefreshGameOverStatus(true);
+			isGameOver = true;
 		}
 	}
 	
