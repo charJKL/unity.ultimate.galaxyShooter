@@ -18,14 +18,14 @@ public class ManagerGame : MonoBehaviour
 	{
 		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER);
 		players = Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
-		Array.ForEach(players, (Player player) => player.OnDestroyied += CheckIfGameIsOver);
+		Array.ForEach(players, (Player player) => player.OnDestroyed += CheckIfGameIsOver);
 	}
 	
-	private void CheckIfGameIsOver(object sender, EventArgs args)
+	private void CheckIfGameIsOver()
 	{
 		foreach(Player player in players)
 		{
-			if(player.isDestroyied == false) return;
+			if(player.isDestroyed == false) return;
 		}
 		
 		managerSpawn.StopSpawning();

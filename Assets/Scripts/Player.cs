@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private AudioClip audioLaser;
 	[SerializeField] private uiScore uiScore;
-
+	
+	const float BASE_SPEED = 5.0f;
 	[SerializeField] private ControlSchema controlSchema;
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.15f;
@@ -35,10 +36,9 @@ public class Player : MonoBehaviour
 	[HideInInspector] private float fireTimeout = 0;
 	[HideInInspector] private int score = 0;
 	
-	public event EventHandler OnDestroyied;
-	public bool isDestroyied { get { return lives == 0; } }
-	
-	const float BASE_SPEED = 5.0f;
+	public delegate void DestroyedDelegate();
+	public event DestroyedDelegate OnDestroyed;
+	public bool isDestroyed { get { return lives <= 0; } }
 	
 	void Awake()
 	{
@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
 	
 	private void DestroySelf()
 	{
-		OnDestroyied?.Invoke(this, EventArgs.Empty);
+		OnDestroyed?.Invoke();
 		Destroy(this.gameObject);
 	}
 	
