@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Asteroid : MonoBehaviour
 {
 	[SerializeField] private GameObject animationExplosion;
-	[SerializeField] private ManagerSpawn managerSpawn;
 	[SerializeField] private float rotation = 20.0f;
 	
 	[HideInInspector] private bool isDestroyed = false;
+	public event DestroyedDelegate OnDestroyed;
+	public bool IsDestroyed { get { return isDestroyed; } }
 	
 	private void FixedUpdate()
 	{
@@ -31,7 +33,7 @@ public class Asteroid : MonoBehaviour
 		if(isDestroyed) return;
 		Instantiate(animationExplosion, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);
-		managerSpawn.StartSpawning(); // TODO move this to managerGame.
+		OnDestroyed.Invoke();
 		isDestroyed = true;
 	}
 }

@@ -7,6 +7,7 @@ using System;
 public class ManagerGame : MonoBehaviour
 {
 	[SerializeField] private ManagerSpawn managerSpawn;
+	[SerializeField] private Asteroid asteroid;
 	[SerializeField] private uiCanvas uiCanvas;
 	[SerializeField] private uiPause uiPause;
 	[SerializeField] public bool isGameOver = false;
@@ -17,6 +18,8 @@ public class ManagerGame : MonoBehaviour
 	private void Awake()
 	{
 		players = FindAllPlayersObjects();
+		
+		asteroid.OnDestroyed += StartGame;
 		Array.ForEach(players, (Player player) => player.OnDestroyed += CheckIfGameIsOver);
 	}
 	
@@ -46,6 +49,11 @@ public class ManagerGame : MonoBehaviour
 	{
 		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(SceneMetrics.TAG_PLAYER);
 		return Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
+	}
+	
+	private void StartGame()
+	{
+		managerSpawn.StartSpawning();
 	}
 	
 	private void CheckIfGameIsOver()
