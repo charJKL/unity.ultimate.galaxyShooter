@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 		switch(other.tag)
 		{
 			case SceneMetrics.TAG_LASER_PLAYER:
-				other.GetComponent<Laser>().owner.GetComponent<Player>().AddScore(12);
+				other.GetComponent<Laser>().owner?.GetComponent<Player>().AddScore(12); // player which shoot this laser beam might be destroyed already.
 				Destroy(other.gameObject);
 				DestroySelf();
 				break;
