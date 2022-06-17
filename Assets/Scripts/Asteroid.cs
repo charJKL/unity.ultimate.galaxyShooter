@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
 	[SerializeField] private float rotation = 20.0f;
 	
 	[HideInInspector] private bool isDestroyed = false;
-	public event DestroyedDelegate OnDestroyed;
+	public event DestroyedDelegate<Asteroid> OnDestroyed;
 	public bool IsDestroyed { get { return isDestroyed; } }
 	
 	private void FixedUpdate()
@@ -32,8 +32,8 @@ public class Asteroid : MonoBehaviour
 	{
 		if(isDestroyed) return;
 		Instantiate(animationExplosion, transform.position, Quaternion.identity);
+		OnDestroyed?.Invoke(this);
 		Destroy(this.gameObject);
-		OnDestroyed.Invoke();
 		isDestroyed = true;
 	}
 }

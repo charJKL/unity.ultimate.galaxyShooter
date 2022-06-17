@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 	[HideInInspector] private float fireTimeout = 0;
 	[HideInInspector] private int score = 0;
 	
-	public event DestroyedDelegate OnDestroyed;
+	public event DestroyedDelegate<Player> OnDestroyed;
 	public bool isDestroyed { get { return lives <= 0; } }
 	
 	void Awake()
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
 	
 	private void DestroySelf()
 	{
-		OnDestroyed?.Invoke();
+		OnDestroyed?.Invoke(this);
 		Destroy(this.gameObject);
 	}
 	

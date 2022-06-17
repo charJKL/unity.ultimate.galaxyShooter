@@ -20,9 +20,9 @@ public class ManagerGame : MonoBehaviour
 		players = FindAllPlayersObjects();
 		
 		asteroid.OnDestroyed += StartGame;
-		Array.ForEach(players, (Player player) => player.OnDestroyed += CheckIfGameIsOver);
+		Array.ForEach(players, AssingPlayerListeners);
 	}
-	
+
 	private void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.P))
@@ -51,12 +51,23 @@ public class ManagerGame : MonoBehaviour
 		return Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
 	}
 	
-	private void StartGame()
+	private void AssingPlayerListeners(Player player)
+	{
+		player.OnDestroyed += SaveScore;
+		player.OnDestroyed += CheckIfGameIsOver;
+	}
+	
+	private void StartGame(Asteroid asteroid)
 	{
 		managerSpawn.StartSpawning();
 	}
 	
-	private void CheckIfGameIsOver()
+	private void SaveScore(Player player)
+	{
+		Debug.Log("");
+	}
+	
+	private void CheckIfGameIsOver(Player player)
 	{
 		if(Array.TrueForAll(players, (Player player) => player.isDestroyed))
 		{

@@ -4,5 +4,5 @@ using UnityEngine;
 
 namespace Utils
 {
-	public delegate void DestroyedDelegate();
+	public delegate void DestroyedDelegate<T>(T obj);
 }
