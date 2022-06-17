@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using System;
+using Utils;
 
 [System.Serializable]
 public struct ControlSchema
@@ -36,7 +34,6 @@ public class Player : MonoBehaviour
 	[HideInInspector] private float fireTimeout = 0;
 	[HideInInspector] private int score = 0;
 	
-	public delegate void DestroyedDelegate();
 	public event DestroyedDelegate OnDestroyed;
 	public bool isDestroyed { get { return lives <= 0; } }
 	
