@@ -222,6 +222,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53931745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4054260509284327551, guid: 5a7adb6b6884bf947a1d076ea6803569,
+    type: 3}
+  m_PrefabInstance: {fileID: 4054260507517597736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7391b901f024b1f42b6b8742e2545448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &294882960
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,10 +786,13 @@ MonoBehaviour:
   managerSpawn: {fileID: 1695109778}
   asteroid: {fileID: 1870103502}
   uiCanvas: {fileID: 734656130}
-  uiHighScores: {fileID: 596473575}
   uiPause: {fileID: 1051704544}
   isGameOver: 0
   isGamePaused: 0
+  players:
+  - player: {fileID: 53931745}
+    uiInfo: {fileID: 550657857}
+    uiHighScores: {fileID: 596473575}
 --- !u!4 &572153065
 Transform:
   m_ObjectHideFlags: 0
@@ -3095,7 +3110,7 @@ PrefabInstance:
     - target: {fileID: 3301286185729339524, guid: 19351ff26389dd14bb583ab4fb874bf1,
         type: 3}
       propertyPath: m_Name
-      value: Score
+      value: Info
       objectReference: {fileID: 0}
     - target: {fileID: 7464661792919792132, guid: 19351ff26389dd14bb583ab4fb874bf1,
         type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class uiScore : MonoBehaviour
+public class uiInfo : MonoBehaviour
 {
 	[SerializeField] private Sprite[] spriteLive;
 	

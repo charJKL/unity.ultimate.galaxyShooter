@@ -11,7 +11,7 @@ public class ManagerGame : MonoBehaviour
 	private struct PlayerInstance
 	{
 		public Player player;
-		public uiScore uiScore;
+		public uiInfo uiInfo;
 		public uiHighScores uiHighScores;
 	}
 	
@@ -43,8 +43,8 @@ public class ManagerGame : MonoBehaviour
 	
 	private void AssingPlayerListeners(PlayerInstance p)
 	{
-		p.player.OnLiveChanged += (int lives) => RefreshUiPlayerLiveCount(p.uiScore, lives);
-		p.player.OnScoreChanged += (int score) => RefreshUiPlayerScoreCount(p.uiScore, score);
+		p.player.OnLiveChanged += (int lives) => RefreshUiPlayerLiveCount(p.uiInfo, lives);
+		p.player.OnScoreChanged += (int score) => RefreshUiPlayerScoreCount(p.uiInfo, score);
 		p.player.OnScoreChanged += (int score) => RefreshUiHighScoreRank(p.uiHighScores, score);
 		p.player.OnDestroyed += () => SavePlayerScore(p.player);
 		p.player.OnDestroyed += CheckIfGameIsOver;
@@ -83,14 +83,14 @@ public class ManagerGame : MonoBehaviour
 		managerSpawn.StartSpawning();
 	}
 	
-	private void RefreshUiPlayerLiveCount(uiScore uiScore, int lives)
+	private void RefreshUiPlayerLiveCount(uiInfo uiInfo, int lives)
 	{
-		uiScore.RefreshLive(lives);
+		uiInfo.RefreshLive(lives);
 	}
 	
-	private void RefreshUiPlayerScoreCount(uiScore uiScore, int score)
+	private void RefreshUiPlayerScoreCount(uiInfo uiInfo, int score)
 	{
-		uiScore.RefreshScore(score);
+		uiInfo.RefreshScore(score);
 	}
 	
 	private void RefreshUiHighScoreRank(uiHighScores uiHighScores, int score)
