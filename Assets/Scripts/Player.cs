@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Utils;
+using System;
 
 [System.Serializable]
 public struct ControlSchema
@@ -14,13 +15,13 @@ public class Player : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabLaser;
 	[SerializeField] private AudioClip audioLaser;
-	[SerializeField] private uiScore uiScore;
 	
 	const float BASE_SPEED = 5.0f;
 	[SerializeField] private ControlSchema controlSchema;
 	[SerializeField] private float speed = BASE_SPEED;
 	[SerializeField] private float fireRate = 0.15f;
 	[SerializeField] private int lives = 3;
+	[SerializeField] private int score = 0;
 	[SerializeField] private bool hasTripleShot = false;
 	[SerializeField] private bool hasShield = false;
 	
@@ -32,13 +33,15 @@ public class Player : MonoBehaviour
 	[HideInInspector] private GameObject shield;
 	[HideInInspector] private AudioSource audioSource;
 	[HideInInspector] private float fireTimeout = 0;
-	[HideInInspector] private int score = 0;
 	
-	public event DestroyedDelegate<Player> OnDestroyed;
+	public event Action OnDestroyed;
+	public event Action<int> OnScoreChanged;
+	public event Action<int> OnLiveChanged;
 	public bool isDestroyed { get { return lives <= 0; } }
 	public int Score{ get { return score; } }
+	public int Lives{ get { return lives; } }
 	
-	void Awake()
+	private void Awake()
 	{
 		gunPosition = transform.Find("GunPosition");
 		gunPositionLeftWing = transform.Find("GunPositionLeftWing");
@@ -49,10 +52,10 @@ public class Player : MonoBehaviour
 		audioSource = GetComponent<AudioSource>();
 	}
 	
-	void Start()
+	private void Start()
 	{
-		uiScore.RefreshScore(score);
-		uiScore.RefreshLive(lives);
+		OnScoreChanged?.Invoke(score);
+		OnLiveChanged?.Invoke(lives);
 	}
 	
 	void FixedUpdate()
@@ -79,7 +82,7 @@ public class Player : MonoBehaviour
 		}
 		
 		lives--;
-		uiScore.RefreshLive(lives);
+		OnLiveChanged?.Invoke(lives);
 		
 		switch(lives)
 		{
@@ -120,7 +123,7 @@ public class Player : MonoBehaviour
 	public void AddScore(int amount)
 	{
 		score += amount;
-		uiScore.RefreshScore(score);
+		OnScoreChanged?.Invoke(score);
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other)
@@ -177,7 +180,7 @@ public class Player : MonoBehaviour
 	
 	private void DestroySelf()
 	{
-		OnDestroyed?.Invoke(this);
+		OnDestroyed?.Invoke();
 		Destroy(this.gameObject);
 	}
 	
