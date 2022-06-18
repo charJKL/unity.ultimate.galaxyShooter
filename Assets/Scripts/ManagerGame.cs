@@ -10,6 +10,7 @@ public class ManagerGame : MonoBehaviour
 	[SerializeField] private ManagerSpawn managerSpawn;
 	[SerializeField] private Asteroid asteroid;
 	[SerializeField] private uiCanvas uiCanvas;
+	[SerializeField] private uiHighScores uiHighScores;
 	[SerializeField] private uiPause uiPause;
 	[SerializeField] public bool isGameOver = false;
 	[SerializeField] private bool isGamePaused = false;
@@ -32,7 +33,12 @@ public class ManagerGame : MonoBehaviour
 		asteroid.OnDestroyed += StartGame;
 		Array.ForEach(players, AssingPlayerListeners);
 	}
-
+	
+	private void Start()
+	{
+		uiHighScores.RefreshScores(scores, 0);
+	}
+	
 	private void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.P))
@@ -75,7 +81,8 @@ public class ManagerGame : MonoBehaviour
 	private void SaveScore(Player player)
 	{
 		scores.Add(player.Score);
-		scores.Reverse();
+		scores.Sort((x, y) => y - x); // sort scores descending
+		uiHighScores.RefreshScores(scores, player.Score);
 		SaveData();
 	}
 	
