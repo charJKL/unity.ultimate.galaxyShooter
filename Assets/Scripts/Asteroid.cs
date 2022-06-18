@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utils;
+using System;
 
 public class Asteroid : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
 	[SerializeField] private float rotation = 20.0f;
 	
 	[HideInInspector] private bool isDestroyed = false;
-	public event DestroyedDelegate<Asteroid> OnDestroyed;
+	public event Action OnDestroyed;
 	public bool IsDestroyed { get { return isDestroyed; } }
 	
 	private void FixedUpdate()
@@ -32,7 +32,7 @@ public class Asteroid : MonoBehaviour
 	{
 		if(isDestroyed) return;
 		Instantiate(animationExplosion, transform.position, Quaternion.identity);
-		OnDestroyed?.Invoke(this);
+		OnDestroyed?.Invoke();
 		Destroy(this.gameObject);
 		isDestroyed = true;
 	}

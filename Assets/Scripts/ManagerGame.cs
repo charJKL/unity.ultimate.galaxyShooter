@@ -78,7 +78,7 @@ public class ManagerGame : MonoBehaviour
 		return Array.ConvertAll(gameObjects, (GameObject obj) => obj.GetComponent<Player>());
 	}
 	
-	private void StartGame(Asteroid asteroid)
+	private void StartGame()
 	{
 		managerSpawn.StartSpawning();
 	}
