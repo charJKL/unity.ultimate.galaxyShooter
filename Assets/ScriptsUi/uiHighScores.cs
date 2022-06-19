@@ -16,9 +16,10 @@ public struct ScoreRecord
 }
 
 public class uiHighScores : MonoBehaviour
-{	
+{
 	[HideInInspector] private Transform list; 
 	[HideInInspector] private Color defaultColor;
+	
 	private void Awake()
 	{
 		list = transform.Find("List");
@@ -30,6 +31,7 @@ public class uiHighScores : MonoBehaviour
 		int i = 0;
 		foreach(ScoreRecord record in scores)
 		{
+			if(i >= list.childCount) break;
 			TextMeshProUGUI position = list.GetChild(i).GetComponent<TextMeshProUGUI>();
 			position.text = $"{i+1}. {record.score}";
 			position.color = record.color ?? defaultColor;
