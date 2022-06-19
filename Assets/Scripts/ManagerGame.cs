@@ -52,23 +52,21 @@ public class ManagerGame : MonoBehaviour
 	
 	private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.P))
+		if(Input.GetKeyDown(KeyCode.Escape))
 		{
-			switch(isGamePaused)
-			{
-				case true: ResumeGame(); break;
-				case false: PauseGame(); break;
-			}
+			PauseGame();
 		}
-		
-		if(Input.GetKeyDown(KeyCode.R) && isGameOver)
-		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		}
-		
-		if(Input.GetKeyDown(KeyCode.Escape) && isGameOver)
+		if(Input.GetKeyDown(KeyCode.Escape) && isGamePaused)
 		{
 			BackToMenu();
+		}
+		if(Input.GetKeyDown(KeyCode.R) && isGamePaused)
+		{
+			ResetGame();
+		}
+		if(Input.GetKeyDown(KeyCode.P) && isGamePaused)
+		{
+			ResumeGame();
 		}
 	}
 	
@@ -127,6 +125,11 @@ public class ManagerGame : MonoBehaviour
 		uiPause.Show();
 		Time.timeScale = 0;
 		isGamePaused = true;
+	}
+	
+	public void ResetGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 	
 	public void BackToMenu()
