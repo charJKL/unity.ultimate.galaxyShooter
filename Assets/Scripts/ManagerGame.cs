@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 public class ManagerGame : MonoBehaviour
 {
@@ -154,19 +155,31 @@ public class ManagerGame : MonoBehaviour
 		SceneManager.LoadScene("Main");
 	}
 	
+	[DllImport("__Internal")] private static extern void StoreScores(string data);
+	[DllImport("__Internal")] private static extern string LoadScores();
+		
 	private void SaveData()
 	{
 		Data data = new Data(){ scores = scores.ToArray() };
 		string json = JsonUtility.ToJson(data);
-		File.WriteAllText(dataFilepath, json);
+		#if UNITY_WEBGL
+			StoreScores(json);
+		#else
+			File.WriteAllText(dataFilepath, json);
+		#endif
 	}
 	
 	private List<int> loadData()
 	{
 		try
 		{
-			if(File.Exists(dataFilepath) == false) return new List<int>();
-			string json = File.ReadAllText(dataFilepath);
+			string json = "";
+			#if UNITY_WEBGL
+				json = LoadScores();
+			#else
+				if(File.Exists(dataFilepath) == false) return new List<int>();
+				json = File.ReadAllText(dataFilepath);
+			#endif
 			Data data = JsonUtility.FromJson<Data>(json);
 			if(data.scores == null) return new List<int>();
 			return new List<int>(data.scores);
