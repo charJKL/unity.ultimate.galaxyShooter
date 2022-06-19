@@ -58,7 +58,7 @@ public class ManagerGame : MonoBehaviour
 	
 	private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.Escape) && !isGamePaused)
 		{
 			PauseGame();
 			return;
