@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class uiHighScores : MonoBehaviour
+public struct ScoreRecord
 {
+	public int score;
+	public Color? color;
+	
+	public ScoreRecord(int score, Color? color = null)
+	{
+		this.score = score;
+		this.color = color;
+	}
+}
+
+public class uiHighScores : MonoBehaviour
+{	
 	[HideInInspector] private Transform list; 
 	[HideInInspector] private Color defaultColor;
 	private void Awake()
@@ -13,21 +25,15 @@ public class uiHighScores : MonoBehaviour
 		defaultColor = list.GetChild(0).GetComponent<TextMeshProUGUI>().color;
 	}
 	
-	public void RefreshScores(List<int> scores, int current)
+	public void RefreshScores(List<ScoreRecord> scores)
 	{
-		List<int> liveScores = new List<int>(scores);
-		liveScores.Add(current);
-		liveScores.Sort((x, y) => y - x);
-		
-		bool alreadyMarked = false; // flag to indicate ex aequo place.
-		for(int i=0; i < list.childCount; i++)
+		int i = 0;
+		foreach(ScoreRecord record in scores)
 		{
-			if(i >= scores.Count) break;
 			TextMeshProUGUI position = list.GetChild(i).GetComponent<TextMeshProUGUI>();
-			string number = (i + 1).ToString();
-			position.text = $"{number}. {liveScores[i]}";
-			position.color = liveScores[i] == current && alreadyMarked == false ? Color.red : this.defaultColor;
-			if(liveScores[i] == current) alreadyMarked = true;
+			position.text = $"{i+1}. {record.score}";
+			position.color = record.color ?? defaultColor;
+			i++;
 		}
 	}
 }

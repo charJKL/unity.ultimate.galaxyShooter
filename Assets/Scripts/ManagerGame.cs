@@ -13,6 +13,7 @@ public class ManagerGame : MonoBehaviour
 		public Player player;
 		public uiInfo uiInfo;
 		public uiHighScores uiHighScores;
+		public Color color;
 	}
 	
 	[SerializeField] private ManagerSpawn managerSpawn;
@@ -51,7 +52,7 @@ public class ManagerGame : MonoBehaviour
 	{
 		p.player.OnLiveChanged += (int lives) => RefreshUiPlayerLiveCount(p.uiInfo, lives);
 		p.player.OnScoreChanged += (int score) => RefreshUiPlayerScoreCount(p.uiInfo, score);
-		p.player.OnScoreChanged += (int score) => RefreshUiHighScoreRank(p.uiHighScores, score);
+		p.player.OnScoreChanged += (int score) => RefreshUiHighScoreRank();
 		p.player.OnDestroyed += () => SavePlayerScore(p.player);
 		p.player.OnDestroyed += CheckIfGameIsOver;
 	}
@@ -101,9 +102,14 @@ public class ManagerGame : MonoBehaviour
 		uiInfo.RefreshScore(score);
 	}
 	
-	private void RefreshUiHighScoreRank(uiHighScores uiHighScores, int score)
+	private void RefreshUiHighScoreRank()
 	{
-		uiHighScores.RefreshScores(scores, score);
+		// Build live score by adding current gameplay score to saved one: 
+		List<ScoreRecord> ranking = scores.ConvertAll<ScoreRecord>((score) => new ScoreRecord(score));
+		foreach(PlayerInstance p in players) ranking.Add(new ScoreRecord(p.player.Score, p.color));
+		ranking.Sort((x , y) => y.score - x.score);
+		
+		foreach(PlayerInstance p in players) p.uiHighScores.RefreshScores(ranking);
 	}
 	
 	private void SavePlayerScore(Player player)

@@ -657,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 6385660641610117938, guid: 4e2e7a4c03e858d4fa972682abc65a6f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6385660641610117938, guid: 4e2e7a4c03e858d4fa972682abc65a6f,
         type: 3}
@@ -847,9 +847,11 @@ MonoBehaviour:
   - player: {fileID: 211351867}
     uiInfo: {fileID: 641679071}
     uiHighScores: {fileID: 759589928}
+    color: {r: 0, g: 0, b: 1, a: 1}
   - player: {fileID: 4054260507517597737}
     uiInfo: {fileID: 773058428}
     uiHighScores: {fileID: 1101095282}
+    color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &641679069
 PrefabInstance:
   m_ObjectHideFlags: 0
