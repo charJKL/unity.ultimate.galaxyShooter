@@ -35,6 +35,7 @@ public class ManagerGame : MonoBehaviour
 	{
 		dataFilepath = Application.dataPath + "/data.json";
 		scores = loadData();
+		Time.timeScale = 1; // Time.timeScale is transferable between play sessions, and may be in `Pause` from previous session, that's why is important to reset it on start play.
 		
 		asteroid.OnDestroyed += StartGame;
 		Array.ForEach(players, AssingPlayerListeners);
