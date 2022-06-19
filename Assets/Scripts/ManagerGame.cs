@@ -17,7 +17,6 @@ public class ManagerGame : MonoBehaviour
 	
 	[SerializeField] private ManagerSpawn managerSpawn;
 	[SerializeField] private Asteroid asteroid;
-	[SerializeField] private uiCanvas uiCanvas;
 	[SerializeField] private uiPause uiPause;
 	[SerializeField] public bool isGameOver = false;
 	[SerializeField] private bool isGamePaused = false;
@@ -55,18 +54,22 @@ public class ManagerGame : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			PauseGame();
+			return;
 		}
 		if(Input.GetKeyDown(KeyCode.Escape) && isGamePaused)
 		{
 			BackToMenu();
+			return;
 		}
 		if(Input.GetKeyDown(KeyCode.R) && isGamePaused)
 		{
 			ResetGame();
+			return;
 		}
 		if(Input.GetKeyDown(KeyCode.P) && isGamePaused)
 		{
 			ResumeGame();
+			return;
 		}
 	}
 	
@@ -108,7 +111,7 @@ public class ManagerGame : MonoBehaviour
 		if(Array.TrueForAll(players, (p) => p.player.isDestroyed))
 		{
 			managerSpawn.StopSpawning();
-			uiCanvas.RefreshGameOverStatus(true);
+			uiPause.Show(uiPause.Status.GameIsOver);
 			isGameOver = true;
 		}
 	}
@@ -122,7 +125,7 @@ public class ManagerGame : MonoBehaviour
 	
 	public void PauseGame()
 	{
-		uiPause.Show();
+		uiPause.Show(uiPause.Status.GameIsPaused);
 		Time.timeScale = 0;
 		isGamePaused = true;
 	}
