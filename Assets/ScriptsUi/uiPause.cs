@@ -22,7 +22,6 @@ public class uiPause : MonoBehaviour
 	
 	private void Awake()
 	{
-		Debug.Log("uiPause::Awake");
 		animator = GetComponent<Animator>();
 		uiGameOver = transform.Find("GameOver").gameObject;
 		uiGamePaused = transform.Find("GamePaused").gameObject;

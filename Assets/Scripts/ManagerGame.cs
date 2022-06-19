@@ -32,10 +32,12 @@ public class ManagerGame : MonoBehaviour
 	
 	private void Awake()
 	{
-		Debug.Log("ManagerGame::Awake");
 		dataFilepath = Application.dataPath + "/data.json";
 		scores = loadData();
-		
+	}
+	
+	private void Start()
+	{
 		// Assign listeners for events:
 		uiPause.Resume.onClick.AddListener(ResumeGame);
 		uiPause.Restart.onClick.AddListener(RestartGame);
