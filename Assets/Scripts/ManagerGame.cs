@@ -34,6 +34,9 @@ public class ManagerGame : MonoBehaviour
 	{
 		dataFilepath = Application.dataPath + "/data.json";
 		scores = loadData();
+		
+		asteroid.OnDestroyed += StartGame;
+		Array.ForEach(players, AssingPlayerListeners);
 	}
 	
 	private void Start()
@@ -42,9 +45,6 @@ public class ManagerGame : MonoBehaviour
 		uiPause.Resume.onClick.AddListener(ResumeGame);
 		uiPause.Restart.onClick.AddListener(RestartGame);
 		uiPause.Back.onClick.AddListener(BackToMenu);
-		
-		asteroid.OnDestroyed += StartGame;
-		Array.ForEach(players, AssingPlayerListeners);
 	}
 	
 	private void AssingPlayerListeners(PlayerInstance p)
@@ -98,7 +98,6 @@ public class ManagerGame : MonoBehaviour
 	
 	private void RefreshUiPlayerScoreCount(uiInfo uiInfo, int score)
 	{
-		Debug.Log($"uiInfo:{uiInfo}. score:{score}");
 		uiInfo.RefreshScore(score);
 	}
 	
