@@ -98,6 +98,7 @@ public class ManagerGame : MonoBehaviour
 	
 	private void RefreshUiPlayerScoreCount(uiInfo uiInfo, int score)
 	{
+		Debug.Log($"uiInfo:{uiInfo}. score:{score}");
 		uiInfo.RefreshScore(score);
 	}
 	
@@ -156,11 +157,17 @@ public class ManagerGame : MonoBehaviour
 	
 	private List<int> loadData()
 	{
-		if(File.Exists(dataFilepath) == false) return new List<int>();
-		
-		string json = File.ReadAllText(dataFilepath);
-		Data data = JsonUtility.FromJson<Data>(json);
-		if(data.scores == null) return new List<int>();
-		return new List<int>(data.scores);
+		try
+		{
+			if(File.Exists(dataFilepath) == false) return new List<int>();
+			string json = File.ReadAllText(dataFilepath);
+			Data data = JsonUtility.FromJson<Data>(json);
+			if(data.scores == null) return new List<int>();
+			return new List<int>(data.scores);
+		}
+		catch(Exception)
+		{
+			return new List<int>();
+		}
 	}
 }
