@@ -11,18 +11,24 @@ public class uiPause : MonoBehaviour
 	[HideInInspector] private Animator animator;
 	[HideInInspector] private GameObject uiGameOver;
 	[HideInInspector] private GameObject uiGamePaused;
-	[HideInInspector] private Button restart;
 	[HideInInspector] private Button resume;
+	[HideInInspector] private Button restart;
+	[HideInInspector] private Button back;
 	
 	const string ANIMATION_SHOW_PAUSE_MENU_BOOL = "showPauseMenu";
+	public Button Resume { get { return resume; } }
+	public Button Restart { get { return restart; } }
+	public Button Back { get { return back; } }
 	
 	private void Awake()
 	{
+		Debug.Log("uiPause::Awake");
 		animator = GetComponent<Animator>();
 		uiGameOver = transform.Find("GameOver").gameObject;
 		uiGamePaused = transform.Find("GamePaused").gameObject;
-		restart = transform.Find("Restart").GetComponent<Button>();
 		resume = transform.Find("Resume").GetComponent<Button>();
+		restart = transform.Find("Restart").GetComponent<Button>();
+		back = transform.Find("BackToMain").GetComponent<Button>();
 	}
 	
 	public void Show(Status status)

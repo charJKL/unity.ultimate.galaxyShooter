@@ -32,10 +32,15 @@ public class ManagerGame : MonoBehaviour
 	
 	private void Awake()
 	{
+		Debug.Log("ManagerGame::Awake");
 		dataFilepath = Application.dataPath + "/data.json";
 		scores = loadData();
 		
 		// Assign listeners for events:
+		uiPause.Resume.onClick.AddListener(ResumeGame);
+		uiPause.Restart.onClick.AddListener(RestartGame);
+		uiPause.Back.onClick.AddListener(BackToMenu);
+		
 		asteroid.OnDestroyed += StartGame;
 		Array.ForEach(players, AssingPlayerListeners);
 	}
@@ -63,7 +68,7 @@ public class ManagerGame : MonoBehaviour
 		}
 		if(Input.GetKeyDown(KeyCode.R) && isGamePaused)
 		{
-			ResetGame();
+			RestartGame();
 			return;
 		}
 		if(Input.GetKeyDown(KeyCode.P) && isGamePaused)
@@ -130,7 +135,7 @@ public class ManagerGame : MonoBehaviour
 		isGamePaused = true;
 	}
 	
-	public void ResetGame()
+	public void RestartGame()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}

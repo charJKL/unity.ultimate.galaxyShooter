@@ -121,19 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3749231994264688108}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9102178376850575985}
-        m_TargetAssemblyTypeName: Ui.uiPause, Assembly-CSharp
-        m_MethodName: ClickResume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6385660640256029469
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +405,7 @@ GameObject:
   - component: {fileID: 6385660641517765896}
   - component: {fileID: 6385660641517765897}
   m_Layer: 5
-  m_Name: Back to main
+  m_Name: BackToMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,19 +513,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6385660641517765896}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9102178376850575985}
-        m_TargetAssemblyTypeName: Ui.uiPause, Assembly-CSharp
-        m_MethodName: ClickBackToMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6385660641610117939
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,19 +751,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6385660642280050889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9102178376850575985}
-        m_TargetAssemblyTypeName: Ui.uiPause, Assembly-CSharp
-        m_MethodName: ClickResume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7495649887581736770
 GameObject:
   m_ObjectHideFlags: 0
